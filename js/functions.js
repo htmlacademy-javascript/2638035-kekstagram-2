@@ -44,3 +44,25 @@ getNumber('а я томат');
 getNumber((2023));
 getNumber((-1));
 getNumber((1.5));
+
+
+function checkTimeMeeting (workStartTime, workEndTime, startTime, meetingDuration) {
+  function convertTime(timeString) {
+    const parts = timeString.split(':');
+    const hours = parseInt(parts[0], 10);
+    const minutes = parseInt(parts[1], 10);
+    return hours * 60 + minutes;
+  }
+  const endTime = convertTime(startTime) + meetingDuration;
+  if (convertTime(workStartTime) > convertTime(startTime) || convertTime(workEndTime) < endTime) {
+    return false;
+  }
+  return true;
+}
+checkTimeMeeting ('08:00', '17:30', '14:00', 90);
+checkTimeMeeting ('8:0', '10:0', '8:0', 120);
+checkTimeMeeting ('08:00', '14:30', '14:00', 90);
+checkTimeMeeting ('14:00', '17:30', '08:0', 90);
+checkTimeMeeting ('8:00', '17:30', '08:00', 900);
+
+
