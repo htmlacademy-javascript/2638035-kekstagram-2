@@ -1,3 +1,5 @@
 import { createImageList } from './data.js';
+import { render } from './render-cards.js';
 
-createImageList(25);
+const photos = createImageList(25);
+render(photos);
