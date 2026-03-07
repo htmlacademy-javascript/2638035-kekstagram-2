@@ -1,3 +1,5 @@
+import { openModal } from './modal';
+
 const template = document
   .querySelector('#picture')
   .content
@@ -14,14 +16,11 @@ export const render = (pictures) => {
     const image = card.querySelector('.picture__img');
     image.src = url;
     image.alt = description;
-    const likesNode = card.querySelector('.picture__likes');
-    likesNode.textContent = likes;
-    card.append(likesNode);
-    const commentsNode = card.querySelector('.picture__comments');
-    commentsNode.textContent = comments.length;
-    card.append(commentsNode);
+    card.querySelector('.picture__likes').textContent = likes;
+    card.querySelector('.picture__comments').textContent = comments.length;
     fragment.append(card);
   });
   containerNode.append(fragment);
 };
 
+openModal();
