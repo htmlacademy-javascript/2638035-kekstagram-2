@@ -20,7 +20,7 @@ const MAX_LIKES = 200;
 const IMAGE_DESCRIPTIONS = ['Any description', 'another description'];
 
 const createComment = (commentId) => {
-  const commentAvatar = `img/avatar-${ getRandomInteger(1, 7) }.svg`;
+  const commentAvatar = `img/avatar-${ getRandomInteger(1, 6) }.svg`;
   const comment = {
     id: commentId,
     avatar: commentAvatar,

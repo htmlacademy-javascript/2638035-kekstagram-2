@@ -6,7 +6,22 @@ const descriptionNode = modalNode.querySelector('.social__caption');
 const likesNode = modalNode.querySelector('.likes-count');
 const shownCountNode = modalNode.querySelector('.social__comment-shown-count');
 const totalCountNode = modalNode.querySelector('.social__comment-total-count');
-const templateComment = modalNode.querySelector('.social__comment');
+const commentTemplate = modalNode.querySelector('.social__comment');
+const commentsListNode = modalNode.querySelector('.social__comments');
+
+let localComments;
+
+const renderComments = () => {
+  localComments.forEach((comment) => {
+    const newCommentNode = commentTemplate.cloneNode(true);
+    const image = newCommentNode.querySelector('.social__picture');
+    image.src = comment.avatar;
+    image.alt = comment.name;
+    newCommentNode.querySelector('.social__text').textContent = comment.message;
+
+    commentsListNode.append(newCommentNode);
+  });
+};
 
 
 const showModal = (isVisible = true) => {
@@ -25,6 +40,9 @@ const render = ({url, description, likes, comments}) => {
   likesNode.textContent = likes;
   shownCountNode.textContent = comments.length;
   totalCountNode.textContent = comments.length;
+  commentsListNode.innerHTML = '';
+  localComments = [...comments];
+  renderComments();
 };
 
 export const openModal = ({url, description, likes, comments}) => {
