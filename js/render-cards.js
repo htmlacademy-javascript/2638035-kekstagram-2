@@ -1,4 +1,4 @@
-import { openModal } from './modal';
+import { openModal } from './modal.js';
 
 const template = document
   .querySelector('#picture')
@@ -19,8 +19,12 @@ export const render = (pictures) => {
     card.querySelector('.picture__likes').textContent = likes;
     card.querySelector('.picture__comments').textContent = comments.length;
     fragment.append(card);
+
+    card.addEventListener('click', () => {
+      openModal({url, description, likes, comments});
+    });
+
+
   });
   containerNode.append(fragment);
 };
-
-openModal();
