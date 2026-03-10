@@ -1,3 +1,5 @@
+import { COMMENTS_STEP } from './constants.js';
+
 const modalNode = document.querySelector('.big-picture');
 const closeButtonNode = document.querySelector('.big-picture__cancel');
 const body = document.body;
@@ -8,11 +10,25 @@ const shownCountNode = modalNode.querySelector('.social__comment-shown-count');
 const totalCountNode = modalNode.querySelector('.social__comment-total-count');
 const commentTemplate = modalNode.querySelector('.social__comment');
 const commentsListNode = modalNode.querySelector('.social__comments');
+const loaderButtonNode = modalNode.querySelector('.social__comments-loader');
 
 let localComments;
+let shownComments;
+
+const renderStatistic = () => {
+  shownCountNode.textContent = shownComments;
+};
+
+const renderLoaderButton = () => {
+  if (localComments.length) {
+    loaderButtonNode.classList.remove('hidden');
+  } else {
+    loaderButtonNode.classList.add('hidden');
+  }
+};
 
 const renderComments = () => {
-  localComments.forEach((comment) => {
+  localComments.splice(0, COMMENTS_STEP).forEach((comment) => {
     const newCommentNode = commentTemplate.cloneNode(true);
     const image = newCommentNode.querySelector('.social__picture');
     image.src = comment.avatar;
@@ -20,7 +36,10 @@ const renderComments = () => {
     newCommentNode.querySelector('.social__text').textContent = comment.message;
 
     commentsListNode.append(newCommentNode);
+    shownComments++;
   });
+  renderStatistic();
+  renderLoaderButton();
 };
 
 
@@ -38,9 +57,9 @@ const render = ({url, description, likes, comments}) => {
   imageNode.src = url;
   descriptionNode.textContent = description;
   likesNode.textContent = likes;
-  shownCountNode.textContent = comments.length;
   totalCountNode.textContent = comments.length;
   commentsListNode.innerHTML = '';
+  shownComments = 0;
   localComments = [...comments];
   renderComments();
 };
@@ -52,4 +71,8 @@ export const openModal = ({url, description, likes, comments}) => {
 
 closeButtonNode.addEventListener('click', () => {
   showModal(false);
+});
+
+loaderButtonNode.addEventListener('click', () => {
+  renderComments();
 });
