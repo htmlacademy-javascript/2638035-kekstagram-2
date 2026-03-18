@@ -1,11 +1,7 @@
-const body = document.body;
+import { ALERT_DELAY } from './constants.js';
 
-export const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
+const body = document.body;
+const alertTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
 
 export const showModal = (modalNode, isVisible = true) => {
   if (isVisible) {
@@ -15,4 +11,12 @@ export const showModal = (modalNode, isVisible = true) => {
     modalNode.classList.add('hidden');
     body.classList.remove('modal-open');
   }
+};
+
+export const showAlert = () => {
+  const alert = alertTemplate.cloneNode(true);
+  body.append(alert);
+  setTimeout(()=>{
+    alert.remove();
+  }, ALERT_DELAY);
 };

@@ -1,6 +1,16 @@
-import { createImageList } from './data.js';
 import { render } from './render-cards.js';
 import './form.js';
+import { showAlert } from './util.js';
+import { getData } from './api.js';
 
-const photos = createImageList(25);
-render(photos);
+
+getData()
+  .then((photos) => {
+    render(photos);
+    // filters connection
+
+  })
+  .catch(()=>{
+    showAlert();
+  });
+

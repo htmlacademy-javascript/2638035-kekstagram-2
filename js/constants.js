@@ -2,6 +2,15 @@ export const MAX_DESCRIPTION = 140;
 export const COMMENTS_STEP = 5;
 export const HASHTAG = /^#[a-zа-я0-9ё]{1,19}$/i;
 export const MAX_HASHTAGS = 5;
+export const ALERT_DELAY = 5000;
+export const WINDOW_TYPES = {
+  SUCCESS: 'success',
+  ERROR: 'error'
+};
+export const SUBMIT_TEXTS = {
+  ACTIVE: 'Опубликовать',
+  DISABLED: 'Публикую...'
+};
 export const Scale = {
   MAX: 100,
   MIN: 25,
