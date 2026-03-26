@@ -1,4 +1,5 @@
 import { WINDOW_TYPES } from './constants.js';
+import { removeEscControl, setEscControl } from './esc-controller.js';
 
 const body = document.body;
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
@@ -12,9 +13,13 @@ const templates = {
 export const showPopup = (windowType) => {
   const popup = templates[windowType].cloneNode(true);
   body.append(popup);
+  setEscControl(()=>{
+    popup.remove();
+  });
   popup.addEventListener('click', ({target})=>{
     if (target.classList.contains(windowType) || target.classList.contains(`${windowType}__button`)) {
       popup.remove();
+      removeEscControl();
     }
   });
 };

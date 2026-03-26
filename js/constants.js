@@ -3,6 +3,11 @@ export const COMMENTS_STEP = 5;
 export const HASHTAG = /^#[a-zа-я0-9ё]{1,19}$/i;
 export const MAX_HASHTAGS = 5;
 export const ALERT_DELAY = 5000;
+export const Filters = {
+  DEFAULT: 'filter-default',
+  RANDOM: 'filter-random',
+  DISCUSSED: 'filter-discussed'
+};
 export const WINDOW_TYPES = {
   SUCCESS: 'success',
   ERROR: 'error'

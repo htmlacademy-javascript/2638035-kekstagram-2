@@ -1,4 +1,5 @@
 import { COMMENTS_STEP } from './constants.js';
+import { removeEscControl, setEscControl } from './esc-controller.js';
 import { showModal } from './util.js';
 
 const modalNode = document.querySelector('.big-picture');
@@ -56,10 +57,14 @@ const render = ({url, description, likes, comments}) => {
 export const openModal = ({url, description, likes, comments}) => {
   showModal(modalNode);
   render({url, description, likes, comments});
+  setEscControl(()=>{
+    showModal(modalNode, false);
+  });
 };
 
 closeButtonNode.addEventListener('click', () => {
   showModal(modalNode, false);
+  removeEscControl();
 });
 
 loaderButtonNode.addEventListener('click', () => {
