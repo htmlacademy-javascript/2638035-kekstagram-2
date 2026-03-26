@@ -1,3 +1,6 @@
+export const TIMEOUT_DELAY = 500;
+export const RANDOM_FACTOR = 0.5;
+export const RANDOM_PHOTOS_COUNT = 10;
 export const MAX_DESCRIPTION = 140;
 export const COMMENTS_STEP = 5;
 export const HASHTAG = /^#[a-zа-я0-9ё]{1,19}$/i;

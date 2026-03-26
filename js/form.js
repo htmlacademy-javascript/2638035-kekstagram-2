@@ -14,8 +14,8 @@ const closeButtonNode = formNode.querySelector('.img-upload__cancel');
 const submitButtonNode = formNode.querySelector('.img-upload__submit');
 const imageNode = formNode.querySelector('.img-upload__preview img');
 const effectsPreviewNodes = formNode.querySelectorAll('.effects__preview');
-const descriptionNode = document.querySelector('.text__description');
-const hashtagNode = document.querySelector('.text__hashtags');
+const descriptionNode = formNode.querySelector('.text__description');
+const hashtagNode = formNode.querySelector('.text__hashtags');
 
 const closeForm = () => {
   showModal(modalNode, false);
@@ -31,7 +31,7 @@ inputNode.addEventListener('change', () => {
   const file = inputNode.files[0];
   const imageUrl = URL.createObjectURL(file);
   imageNode.src = imageUrl;
-  effectsPreviewNodes.forEach((image)=>{
+  effectsPreviewNodes.forEach((image) => {
     image.style.backgroundImage = `url(${imageUrl})`;
   });
   setEscControl(closeForm, isPosibleClosingForm);
@@ -53,7 +53,7 @@ formNode.addEventListener('submit', (evt) => {
   if (isValid()) {
     disableSubmit();
     sendData(new FormData(formNode))
-      .then((response)=>{
+      .then((response) => {
         if (!response.ok) {
           throw new Error();
         }
@@ -61,10 +61,10 @@ formNode.addEventListener('submit', (evt) => {
         removeEscControl();
         showPopup(WINDOW_TYPES.SUCCESS);
       })
-      .finally(()=>{
+      .finally(() => {
         disableSubmit(false);
       })
-      .catch(()=>{
+      .catch(() => {
         showPopup(WINDOW_TYPES.ERROR);
       });
   }

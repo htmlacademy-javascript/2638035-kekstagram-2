@@ -4,7 +4,6 @@ import { showAlert } from './util.js';
 import { getData } from './api.js';
 import { initFilters } from './filters.js';
 
-
 getData()
   .then((photos) => {
     render(photos);

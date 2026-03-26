@@ -8,6 +8,7 @@ const template = document
 const containerNode = document.querySelector('.pictures');
 
 let localPictures;
+
 const clearPhotos = () => {
   const photos = document.querySelectorAll('.picture');
   photos.forEach((photo)=>{
@@ -16,8 +17,6 @@ const clearPhotos = () => {
 };
 
 export const render = (pictures) => {
-  // eslint-disable-next-line no-console
-  console.log(pictures);
   clearPhotos();
   localPictures = [...pictures];
   const fragment = document.createDocumentFragment();
