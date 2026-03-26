@@ -1,4 +1,4 @@
-import { ALERT_DELAY } from './constants.js';
+import { ALERT_DELAY, TIMEOUT_DELAY } from './constants.js';
 
 const body = document.body;
 const alertTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
@@ -21,8 +21,7 @@ export const showAlert = () => {
   }, ALERT_DELAY);
 };
 
-
-export const debounce = (callback, timeoutDelay = 500) => {
+export const debounce = (callback, timeoutDelay = TIMEOUT_DELAY) => {
   let timeoutId;
   return (...rest) => {
     clearTimeout(timeoutId);
